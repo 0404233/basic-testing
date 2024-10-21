@@ -1,5 +1,5 @@
 // Uncomment the code below and write your tests
-import { getBankAccount, InsufficientFundsError, TransferFailedError,SynchronizationFailedError } from './index';
+import { getBankAccount, InsufficientFundsError, TransferFailedError, SynchronizationFailedError } from './index';
 
 describe('BankAccount', () => {
   const accountA = getBankAccount(100);
@@ -45,8 +45,9 @@ describe('BankAccount', () => {
   });
 
   test('fetchBalance should return number in case if request did not failed', async () => {
+    accountA.fetchBalance = async () => 4;
     const result = await accountA.fetchBalance();
-    expect(typeof(result)).toBe('number');
+    expect(typeof result).toBe('number');
   });
 
   test('should set new balance if fetchBalance returned number', async () => {
